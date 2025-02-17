@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Text, TouchableOpacity, TextInput, Image } from 'react-native';
+import React, {useState} from 'react';
+import {Text, TouchableOpacity, TextInput, Image, View} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DatePicker = ({ value, error, formik }) => {
+const DatePicker = ({value, error, formik}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [date, setDate] = useState(value || new Date()); // Initialize with 'value' prop
 
@@ -16,18 +16,19 @@ const DatePicker = ({ value, error, formik }) => {
     formik.setFieldValue('date', currentDate); // Set the date field value in Formik
     setDatePickerVisibility(false);
   };
+  console.log('isDatePickerVisible--', isDatePickerVisible);
 
   return (
     <>
       <Text style={styles.inputLabel}>Date of Birth*</Text>
-      <Image source={require('../../assests/images/calendar.png')} style={styles.icon} />
-      <TouchableOpacity onPress={showDatePicker}>
-        <TextInput
-          style={styles.inputText}
-          value={value ? value.toDateString() : ''} // Display date if available
-          editable={false}
-          placeholder="mm/dd/yyyy"
-          placeholderTextColor={'#AFAEB7'}
+      <TouchableOpacity onPress={showDatePicker} style={styles.datePicker}>
+        <Text style={{fontSize: 16, color: '#AFAEB7', marginLeft: 5}}>
+          {value ? value.toDateString() : 'mm/dd/yyyy'}
+        </Text>
+
+        <Image
+          source={require('../../assests/images/calendar.png')}
+          style={styles.icon}
         />
       </TouchableOpacity>
       {isDatePickerVisible && (
@@ -50,11 +51,9 @@ const styles = {
     marginBottom: 5,
   },
   icon: {
-    position: 'relative',
-    backgroundColor: '#EDEDED',
-    top: 35,
-    left: 320,
-    zIndex: 1,
+    resizeMode: 'contain',
+    width: 20,
+    height: 20,
   },
   inputText: {
     borderWidth: 0.5,
@@ -69,7 +68,17 @@ const styles = {
   errorText: {
     color: 'red',
     fontSize: 12,
-  }
+  },
+  datePicker: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 8,
+    fontSize: 14,
+    borderWidth: 0.1,
+    borderColor: 'black',
+    backgroundColor: '#AFAEB750',
+    padding: 15,
+  },
 };
 
 export default DatePicker;

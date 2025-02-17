@@ -1,7 +1,18 @@
 import React from 'react';
-import { TextInput, Text, Image, View, StyleSheet } from 'react-native';
+import {TextInput, Text, Image, View, StyleSheet} from 'react-native';
 
-const InputText = ({ label, icon, secureTextEntry, placeholder, keyboardType, value, onChangeText, onBlur, error, iconStyle }) => {
+const InputText = ({
+  label,
+  icon,
+  secureTextEntry,
+  placeholder,
+  keyboardType,
+  value,
+  onChangeText,
+  onBlur,
+  error,
+  iconStyle,
+}) => {
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.inputLabel}>{label}</Text>
@@ -24,9 +35,9 @@ const InputText = ({ label, icon, secureTextEntry, placeholder, keyboardType, va
 };
 
 const styles = StyleSheet.create({
-  inputContainer: { marginBottom: 15 },
-  inputLabel: { fontSize: 16, fontWeight: 'normal' },
-  inputWrapper: { position: 'relative' },
+  inputContainer: {marginBottom: 15},
+  inputLabel: {fontSize: 16, fontWeight: 'normal'},
+  inputWrapper: {position: 'relative'},
   inputText: {
     borderRadius: 8,
     paddingLeft: 45,
@@ -36,15 +47,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#AFAEB750',
     padding: 15,
   },
-  inputIcon: { 
-    position: 'absolute', 
-    top: 12, 
-    left: 10, 
+  inputIcon: {
+    position: 'absolute',
+    top: 12,
+    left: 10,
     zIndex: 1,
-    width: 20,    
-    height: 20,   
+    width: 20,
+    height: 20,
   },
-  errorText: { color: 'red', fontSize: 12, marginTop: 5 },
+  errorText: {color: 'red', fontSize: 12, marginTop: 5},
 });
 
 export default InputText;

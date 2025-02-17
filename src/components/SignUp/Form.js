@@ -1,6 +1,6 @@
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
-import { ScrollView, StatusBar, StyleSheet, Text } from 'react-native';
+import {useFormik} from 'formik';
+import React, {useState} from 'react';
+import {ScrollView, StatusBar, StyleSheet, Text} from 'react-native';
 import * as Yup from 'yup';
 import Button from '../SignUp/Button';
 import DatePicker from '../SignUp/DatePicker';
@@ -12,21 +12,26 @@ import Specialization from './Specialization';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
-  nationalId: Yup.string().matches(/^\d{10}$/, 'National ID must be 10 digits').required('National ID is required'),
-  phoneNumber: Yup.string().matches(/^\d{10}$/, 'Phone number must be 10 digits').required('Phone number is required'),
+  nationalId: Yup.string()
+    .matches(/^\d{10}$/, 'National ID must be 10 digits')
+    .required('National ID is required'),
+  phoneNumber: Yup.string()
+    .matches(/^\d{11}$/, 'Phone number must be 11 digits')
+    .required('Phone number is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   gender: Yup.string().required('Gender is required'),
   date: Yup.date().nullable().required('Date of Birth is required'),
   specialization: Yup.string().required('Specialization is required'),
   licenseNo: Yup.string().required('License No is required'),
-  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
 });
 
-const SignUpForm = ({ onSubmit, navigation }) => {
+const SignUpForm = ({onSubmit, navigation}) => {
   const [date, setDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
- 
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -40,16 +45,16 @@ const SignUpForm = ({ onSubmit, navigation }) => {
       password: '',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: values => {
       console.log('Form submitted with values:', values);
       navigation.navigate('Login');
     },
   });
 
-
-
   return (
-    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Text style={styles.header}>Create Account</Text>
       <Text style={styles.subHeader}>Create account as doctor</Text>
@@ -64,7 +69,6 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.name && formik.errors.name}
       />
 
-   
       <InputText
         label="National ID*"
         keyboardType="numeric"
@@ -83,7 +87,6 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.phoneNumber && formik.errors.phoneNumber}
       />
 
- 
       <InputText
         label="E-mail*"
         keyboardType="email-address"
@@ -93,7 +96,6 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.email && formik.errors.email}
       />
 
-
       <GenderPicker
         name="gender"
         value={formik.values.gender}
@@ -102,13 +104,11 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.gender && formik.errors.gender}
       />
 
-
-<DatePicker
-  value={formik.values.date} 
-  error={formik.touched.date && formik.errors.date} 
-  formik={formik}
-/>
-
+      <DatePicker
+        value={formik.values.date}
+        error={formik.touched.date && formik.errors.date}
+        formik={formik}
+      />
 
       <Specialization
         name="specialization"
@@ -118,7 +118,6 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.specialization && formik.errors.specialization}
       />
 
-    
       <InputText
         label="License No*"
         keyboardType="phone-pad"
@@ -128,7 +127,6 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.licenseNo && formik.errors.licenseNo}
       />
 
-  
       <InputText
         label="Password*"
         secureTextEntry
@@ -138,10 +136,9 @@ const SignUpForm = ({ onSubmit, navigation }) => {
         error={formik.touched.password && formik.errors.password}
       />
 
+      {/* <Button title="LogIn" onPress={formik.handleSubmit} /> */}
+      <Button onPress={formik.handleSubmit} />
 
-  {/* <Button title="LogIn" onPress={formik.handleSubmit} /> */}
-  <Button onPress={formik.handleSubmit} />
-   
       <LinkText
         text="Already have an account? "
         linkText="Sign In"
@@ -152,9 +149,9 @@ const SignUpForm = ({ onSubmit, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 20, backgroundColor: '#fff' },
-  header: { fontSize: 20, fontWeight: 'bold', color: '#3C3B43',  },
-  subHeader: { fontSize: 15, color: '#D7D6DB',  },
+  container: {padding: 20, backgroundColor: '#fff'},
+  header: {fontSize: 20, fontWeight: 'bold', color: '#3C3B43'},
+  subHeader: {fontSize: 15, color: '#D7D6DB'},
 });
 
 export default SignUpForm;

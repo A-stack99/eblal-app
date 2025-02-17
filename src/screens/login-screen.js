@@ -1,14 +1,13 @@
-
-import React, { useContext , useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { ContextAPI } from '../Global/ContextAPI';
-import { useFormik } from 'formik';
+import React, {useContext, useState} from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {ContextAPI} from '../Global/ContextAPI';
+import {useFormik} from 'formik';
 import validationSchema from '../components/Login/FormValidation';
 import InputText from '../components/Login/TextInput';
 import Button from '../components/Login/Button';
 
-const LogIn = ({ navigation }) => {
-  const { setUser } = useContext(ContextAPI);
+const LogIn = ({navigation}) => {
+  const {setUser} = useContext(ContextAPI);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,10 +15,10 @@ const LogIn = ({ navigation }) => {
   };
 
   const formik = useFormik({
-    initialValues: { email: '', password: '' },
+    initialValues: {email: '', password: ''},
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      setUser({ email: values.email, password: values.password });
+    onSubmit: values => {
+      setUser({email: values.email, password: values.password});
       console.log(values.email, values.password);
       navigation.navigate('Profile');
     },
@@ -28,37 +27,38 @@ const LogIn = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Login Account</Text>
-      <Text style={styles.headerText}>Please login with your registered account</Text>
+      <Text style={styles.headerText}>
+        Please login with your registered account
+      </Text>
 
       <InputText
-  label="Email"
-  icon={require('../assests/images/envelop.png')}
-  value={formik.values.email}
-  onChangeText={formik.handleChange('email')}
-  onBlur={formik.handleBlur('email')}
-  // iconStyle={{ width: 30, height: 30, top: 10, left: 15 }}
-  error={formik.touched.email && formik.errors.email}
-/>
+        label="Email"
+        icon={require('../assests/images/envelop.png')}
+        value={formik.values.email}
+        onChangeText={formik.handleChange('email')}
+        onBlur={formik.handleBlur('email')}
+        // iconStyle={{ width: 30, height: 30, top: 10, left: 15 }}
+        error={formik.touched.email && formik.errors.email}
+      />
 
-
-
-<InputText
-  label="Password"
-  icon={require('../assests/images/lock.png')}
-  secureTextEntry
-  value={formik.values.password}
-  onChangeText={formik.handleChange('password')}
-  onBlur={formik.handleBlur('password')}
-  // iconStyle={{ width: 20, height: 30, top: 10, left: 15 }}
-  error={formik.touched.password && formik.errors.password}
-/>
-<TouchableOpacity onPress={togglePasswordVisibility} style={{ position: 'relative', right: -312 }}>
+      <InputText
+        label="Password"
+        icon={require('../assests/images/lock.png')}
+        secureTextEntry
+        value={formik.values.password}
+        onChangeText={formik.handleChange('password')}
+        onBlur={formik.handleBlur('password')}
+        // iconStyle={{ width: 20, height: 30, top: 10, left: 15 }}
+        error={formik.touched.password && formik.errors.password}
+      />
+      <TouchableOpacity
+        onPress={togglePasswordVisibility}
+        style={{position: 'absolute', right: 40}}>
         <Image
-          source={require('../assests/images/eye.png')} 
-          style={{ width: 20, height: 20 , top:-50 }}
+          source={require('../assests/images/eye.png')}
+          style={{width: 20, height: 20, top: -15}}
         />
       </TouchableOpacity>
-
 
       <TouchableOpacity>
         <Text style={styles.passwordtext}>Forgot Password?</Text>
@@ -68,7 +68,7 @@ const LogIn = ({ navigation }) => {
 
       <View style={styles.signUpContainer}>
         <Text style={styles.signUp}>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text style={styles.link}>Sign Up</Text>
         </TouchableOpacity>
       </View>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   or: {
     alignSelf: 'center',
     marginVertical: 20,
-    marginTop:12
+    marginTop: 12,
   },
 });
 
