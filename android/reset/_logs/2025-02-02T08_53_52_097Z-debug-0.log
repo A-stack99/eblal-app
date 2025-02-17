@@ -1,0 +1,24 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.0.0
+2 info using node@v22.11.0
+3 silly config load:file:C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Administrator\ContextApi\.npmrc
+5 silly config load:file:C:\Users\Administrator\.npmrc
+6 silly config load:file:C:\Users\Administrator\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm start
+8 verbose argv "start" "--cache" "reset"
+9 verbose logfile logs-max:10 dir:C:\Users\Administrator\ContextApi\android\reset\_logs\2025-02-02T08_53_52_097Z-
+10 verbose logfile C:\Users\Administrator\ContextApi\android\reset\_logs\2025-02-02T08_53_52_097Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/npm 228ms
+13 verbose cwd C:\Users\Administrator\ContextApi\android
+14 verbose os Windows_NT 10.0.22000
+15 verbose node v22.11.0
+16 verbose npm  v11.0.0
+17 notice
+17 notice New [33mminor[39m version of npm available! [33m11.0.0[39m -> [34m11.1.0[39m
+17 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.1.0[39m
+17 notice To update run: [4mnpm install -g npm@11.1.0[24m
+17 notice  { force: true, [Symbol(proc-log.meta)]: true }
+18 verbose exit 1
+19 verbose code 1
